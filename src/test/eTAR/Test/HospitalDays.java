@@ -1,4 +1,4 @@
-package eTAR;
+package Test;
 
 import io.github.bonigarcia.wdm.WebDriverManager;
 import org.openqa.selenium.By;
@@ -11,7 +11,7 @@ import org.openqa.selenium.support.ui.Select;
 public class HospitalDays {
 
     WebDriver driver = new ChromeDriver();
-    String SplittedTAR;
+    String SplitTAR;
 
     public void logintoeTAR() {
 
@@ -101,21 +101,21 @@ public class HospitalDays {
         if(splitTAR.length > 1) {
 
             System.out.println("TCN: "+ splitTAR[1].trim());
-            SplittedTAR = splitTAR[1].trim();
+            SplitTAR = splitTAR[1].trim();
 
         }else
         {
             System.out.println("No TAR Found");
         }
 
-        TARInquiry(SplittedTAR);
+        TARInquiry(SplitTAR);
     }
 
-    public void TARInquiry(String SplittedTAR) throws InterruptedException {
+    public void TARInquiry(String SplitTAR) throws InterruptedException {
 
         driver.findElement(By.xpath("//a[@alt='[TAR Menu]']")).click();
         driver.findElement(By.xpath("//a[normalize-space()='Inquire on a TAR']")).click();
-        driver.findElement(By.xpath("//input[@name='TarNum']")).sendKeys(SplittedTAR);
+        driver.findElement(By.xpath("//input[@name='TarNum']")).sendKeys(this.SplitTAR);
         driver.findElement(By.xpath("//input[@name='Submit']")).click();
         driver.switchTo().alert().accept();
         driver.findElement(By.xpath("//td[@headers='TCN']")).click();

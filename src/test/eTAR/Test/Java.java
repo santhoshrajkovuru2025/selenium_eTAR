@@ -1,4 +1,4 @@
-package eTAR;
+package Test;
 
 public class Java {
 }
