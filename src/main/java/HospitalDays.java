@@ -1,4 +1,4 @@
-package Test;
+
 
 import io.github.bonigarcia.wdm.WebDriverManager;
 import org.openqa.selenium.By;
@@ -13,7 +13,7 @@ public class HospitalDays {
     WebDriver driver = new ChromeDriver();
     String SplitTAR;
 
-    public void logintoeTAR() {
+    public void loginToeTAR() {
 
         WebDriverManager.chromedriver().setup();
         driver.get("http://sysdev.softsol.com/");
@@ -133,7 +133,7 @@ public class HospitalDays {
         for (int i = 1; i <= 1; i++) {
 
             HospitalDays TAR = new HospitalDays();
-            TAR.logintoeTAR();
+            TAR.loginToeTAR();
             TAR.enterProviderInformation();
             TAR.enterPatientInformation();
             TAR.addServiceInformation();
