@@ -151,7 +151,4 @@ public class ApneaMonitor {
 		TAR.checkTARSummary();
 		TAR.submitTAR();
 	}
-
-	
-
 }

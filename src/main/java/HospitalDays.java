@@ -11,7 +11,7 @@ import org.openqa.selenium.support.ui.Select;
 public class HospitalDays {
 
     WebDriver driver = new ChromeDriver();
-    String SplitTAR;
+    String SplittedTAR;
 
     public void loginToeTAR() {
 
@@ -101,21 +101,21 @@ public class HospitalDays {
         if(splitTAR.length > 1) {
 
             System.out.println("TCN: "+ splitTAR[1].trim());
-            SplitTAR = splitTAR[1].trim();
+            SplittedTAR = splitTAR[1].trim();
 
         }else
         {
             System.out.println("No TAR Found");
         }
 
-        TARInquiry(SplitTAR);
+        TARInquiry(SplittedTAR);
     }
 
-    public void TARInquiry(String SplitTAR) throws InterruptedException {
+    public void TARInquiry(String SplittedTAR) throws InterruptedException {
 
         driver.findElement(By.xpath("//a[@alt='[TAR Menu]']")).click();
         driver.findElement(By.xpath("//a[normalize-space()='Inquire on a TAR']")).click();
-        driver.findElement(By.xpath("//input[@name='TarNum']")).sendKeys(this.SplitTAR);
+        driver.findElement(By.xpath("//input[@name='TarNum']")).sendKeys(this.SplittedTAR);
         driver.findElement(By.xpath("//input[@name='Submit']")).click();
         driver.switchTo().alert().accept();
         driver.findElement(By.xpath("//td[@headers='TCN']")).click();
@@ -140,7 +140,7 @@ public class HospitalDays {
             TAR.checkTARSummary();
             System.out.println("------ Iteration: " + i + " ------");
             TAR.submitTAR();
-            System.out.println("------ Completed Iteration: " + i + " ------\n");
+            System.out.println("------ Completed Iteration: " + i + " ------");
         }
     }
 }
