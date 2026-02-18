@@ -30,7 +30,6 @@ public class PatientPage {
         driver.findElement(By.xpath("//input[@name='Gender'][1]")).click();
 
         WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
-
         WebElement btn = wait.until(ExpectedConditions.elementToBeClickable(
                 By.xpath("//input[@type='submit' and @value='Continue']")
         ));
