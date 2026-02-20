@@ -1,6 +1,7 @@
 package pages;
 
 import org.openqa.selenium.By;
+import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
@@ -18,7 +19,7 @@ public class PatientPage {
         this.driver = driver;
     }
 
-    public void enterPatientInformation(String MedicalID, String Patient_Last_Name, String Patient_First_Name, String Patient_DOB) {
+    public void enterPatientInformation(String MedicalID, String Patient_Last_Name, String Patient_First_Name, String Patient_DOB) throws InterruptedException {
 
         driver.findElement(By.xpath("//input[@name='MedicalID']")).sendKeys(MedicalID);
         WebElement SpecHand = driver.findElement(By.xpath("//select[@name='SpecHand']"));
@@ -29,14 +30,22 @@ public class PatientPage {
         driver.findElement(By.xpath("//input[@name='PatDOB']")).sendKeys(Patient_DOB);
         driver.findElement(By.xpath("//input[@name='Gender'][1]")).click();
 
-        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
-        WebElement btn = wait.until(ExpectedConditions.elementToBeClickable(
-                By.xpath("//input[@type='submit' and @value='Continue']")
-        ));
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(15));
 
-        btn.click();
+        WebElement continueBtn = wait.until(
+                ExpectedConditions.elementToBeClickable(
+                        By.xpath("//input[@type='submit' and @value='Continue']")
+                )
+        );
 
-         //driver.findElement(By.xpath("//input[@type='submit' and @value='Continue']")).click();
+// Scroll to center of screen
+        ((JavascriptExecutor) driver).executeScript(
+                "arguments[0].scrollIntoView({block:'center'});", continueBtn);
+
+// Small wait for animation
+        Thread.sleep(500);
+
+        continueBtn.click();
 
     }
 }
